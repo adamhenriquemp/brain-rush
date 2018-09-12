@@ -58,12 +58,12 @@ class Zombie(pygame.sprite.Sprite):
             self.move_random()
         elif rand or not self.RANDOM_MOVEMENT:
             data_harvest.hero_movement.append(['LEFT',self.speed,datetime.datetime.now()])
-     
+
             self.images = self.images_esq
             self.image = self.images[self.index]
             if self.pos.x > 0:
                 self.pos.x -= self.speed
-                
+
     def move_right(self, rand=False):
         if self.RANDOM_MOVEMENT and not rand:
             self.move_random()
@@ -124,7 +124,7 @@ class Zombie(pygame.sprite.Sprite):
                 self.RANDOM_MOVEMENT = False
                 data_harvest.random_events.append(['END_RANDOM_MOVEMENT',datetime.datetime.now()])
 
-        # faz os frames se alternarem
+        # faz os frames se alternarem    
         self.delay_time_index += 1
         if self.delay_time_index >= self.DELAY_TIME:
             self.delay_time_index = 0
@@ -152,16 +152,46 @@ class Zombie(pygame.sprite.Sprite):
     def human_error(self):
         if not self.SLOWED_DOWN or not self.RANDOM_MOVEMENT:
             data_harvest.random_events.append(['START_HUMAN_ERROR',datetime.datetime.now()])
-            erro = pygame.mixer.Sound('sounds/human_error.wav')
+            erro = pygame.mixer.Sound('src/sounds/human_error.wav')
             erro.play()
             time.sleep(1)
             data_harvest.random_events.append(['END_HUMAN_ERROR',datetime.datetime.now()])
 
     def zombie_scream(self):
         data_harvest.random_events.append(['ZOMBIE_SCREAM',datetime.datetime.now()])
-        erro = pygame.mixer.Sound('sounds/erro.wav')
+        erro = pygame.mixer.Sound('src/sounds/erro.wav')
         erro.play()
 
     def bite(self):
-        erro = pygame.mixer.Sound('sounds/bite1.wav')
+        erro = pygame.mixer.Sound('src/sounds/bite1.wav')
         erro.play()
+
+
+
+
+
+
+############################################### LIMBO ###############################################################
+
+
+   # def zombie_error(self):
+   #     erro = pygame.mixer.Sound('src/sounds/erro.wav')
+   #     erro.play()
+
+    #def human_error(self):
+    #    erro = pygame.mixer.Sound('src/sounds/human_error.wav')
+    #    erro.play()
+    #    time.sleep(1)
+
+    #def bite(self):
+    #    erro = pygame.mixer.Sound('src/sounds/bite1.wav')  
+    #     erro.play()
+  #  def wrong_way(self, number):
+  #      if number == 0:
+  #          return self.move_up()
+  #      elif number == 1:
+  #          return self.move_down()
+  #      elif number == 2:
+  #          return self.move_right()
+  #      else:
+  #          return self.move_left()
